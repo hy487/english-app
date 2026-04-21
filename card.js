@@ -16,7 +16,7 @@ function loadCards() {
 
   currentEntries = shuffle([...entries]); // copy + shuffle
 
-  let html = "";
+  let text = "";
 
   currentEntries.forEach((entry, index) => {
     let options = getOptions(currentEntries, index);
@@ -27,7 +27,7 @@ function loadCards() {
   </a>
     `).join("");
 
-    html += `
+    text += `
       <div class="card">
         <h3>${entry.word.toUpperCase()}</h3>
         <div class="options">${optionsHTML}</div>
@@ -36,7 +36,7 @@ function loadCards() {
     `;
   });
 
-  container.innerHTML = html;
+  container.innerHTML = text;
 }
 
 function toggleMeaning(index) {
@@ -51,8 +51,11 @@ function toggleMeaning(index) {
 
 function getOptions(entries, correctIndex) {
   let options = [entries[correctIndex].meaning];
+  
+  // Calculate how many choices we can actually show (max 3)
+  let maxChoices = Math.min(entries.length, 3);
 
-  while (options.length < 3) {
+  while (options.length < maxChoices) {
     let randomIndex = Math.floor(Math.random() * entries.length);
     let randomMeaning = entries[randomIndex].meaning;
 
