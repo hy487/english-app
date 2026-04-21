@@ -108,6 +108,7 @@ body {
     border-radius: 50%;
     background-color: var(--bg-light);
     transition: 200ms;
+    cursor: pointer;
 }
 
 .add a:hover {
@@ -115,13 +116,19 @@ body {
     border-color: var(--border-muted);
     color: var(--text-muted);
     transition: 300ms;
+    cursor: pointer;
 }
-
+#dict button{
+    background-color: var(--secondary);
+    border: none;
+    color: var(--bg-dark);
+    cursor: pointer;
+}
 #card-holder {
     position: relative;
     top: 50px;
-     display: grid;
-  place-items: center
+    display: grid;
+    place-items: center
 }
 
 #card-holder .card {
@@ -134,11 +141,24 @@ body {
     margin-top: 30px;
     padding-bottom: 20px;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
-#card-holder .card .meaning{
+
+#card-holder .card .meaning {
     display: none;
     font-size: 25px;
 }
-#card-holder .card h3{
+
+#card-holder .card h3 {
     font-size: 25px;
+}
+#card-holder .card a{
+    margin-left: 5px;
+    margin-right: 5px;
+    transition: 200ms;
+    cursor: pointer;
+}
+#card-holder .card a:hover{
+    color: var(--text-muted);
+    transition: 200ms;
 }
