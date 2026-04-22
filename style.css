@@ -118,12 +118,14 @@ body {
     transition: 300ms;
     cursor: pointer;
 }
-#dict button{
+
+#dict button {
     background-color: var(--secondary);
     border: none;
     color: var(--bg-dark);
     cursor: pointer;
 }
+
 #card-holder {
     position: relative;
     top: 50px;
@@ -152,13 +154,77 @@ body {
 #card-holder .card h3 {
     font-size: 25px;
 }
-#card-holder .card a{
+
+#card-holder .card a {
     margin-left: 5px;
     margin-right: 5px;
     transition: 200ms;
     cursor: pointer;
 }
-#card-holder .card a:hover{
+
+#card-holder .card a:hover {
     color: var(--text-muted);
     transition: 200ms;
+}
+
+.full {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    transform: translateX(-30px);
+    height: 85vh;
+}
+
+.login-card {
+    background-color: var(--bg-dark);
+    display: flex;
+    width: 100px;
+
+    input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom-color: var(--border-muted);
+        background-color: var(--bg-dark);
+        margin-bottom: 6px;
+        color: var(--text);
+        transition: 300ms;
+    }
+}
+
+.login-card input:focus {
+    background-color: var(--bg-light);
+    transition: 300ms;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: var(--border);
+    outline: none;
+}
+
+
+.login-card form {
+    background-color: var(--bg-dark);
+    padding: 5px 5px 5px 5px;
+}
+
+.login-card .btn{
+    background-color: var(--bg-light);
+    border: var(--border) 1px solid;
+    padding: 2px 2px 2px 2px; 
+    margin-top: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card p1 {
+    font-size: 10px;
+    color: var(--text-muted);
+
+    a {
+        color: var(--text);
+        cursor: pointer;
+    }
 }
