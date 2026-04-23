@@ -1,38 +1,99 @@
-console.log(localStorage)
+let api = "https://english-app-api-ntyi.onrender.com"
 
-function displayEntries() {
-    let entries = JSON.parse(localStorage.getItem("dictionary")) || [];
-    let outputDiv = document.getElementById("dict")
-     if (entries.length === 0) {
-      return;
+async function displayEntries() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const res = await fetch(api + "/words", {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    });
+
+    const entries = await res.json();
+
+    let outputDiv = document.getElementById("dict");
+
+    if (!entries.length) {
+        outputDiv.innerHTML = "No words yet";
+        return;
     }
-    let list = ""
-    entries.forEach((word, index) => {
-        list = list + "<br>" +  word.word + " - " + word.meaning + " " + `<button onclick="remove(${index})">-</button>`
-    })
 
-    outputDiv.innerHTML = list
+    let list = "";
+    entries.forEach((word, index) => {
+        list += `<br>${word.word} - ${word.meaning}<button onclick="remove('${word._id}')">-</button>`;
+    });
+
+    outputDiv.innerHTML = list;
 }
 
 displayEntries();
 
-function addWord() {
-    let word = prompt("New word:");
+async function addWord() {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+    const word = prompt("New word:");
     if (!word) return;
 
-    let meaning = prompt("Enter the meaning:");
+    const meaning = prompt("Enter the meaning:");
     if (!meaning) return;
 
-    let entries = JSON.parse(localStorage.getItem("dictionary")) || [];
-    entries.push({ word: word, meaning: meaning });
-    localStorage.setItem("dictionary", JSON.stringify(entries));
+    const res = await fetch(api + "/words", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ word, meaning })
+    });
+
+    let data;
+    try {
+        data = await res.json();
+    } catch {
+        throw new Error("Invalid server response");
+    }
+
+    if (res.ok) {
+        displayEntries(); // refresh list
+    } else {
+        alert(data.error);
+    }
+}
+
+async function remove(id) {
+    const token = localStorage.getItem("token");
+
+    await fetch(`${api}/words/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    });
+
     displayEntries();
 }
 
-function remove(index){
-    let entries = JSON.parse(localStorage.getItem("dictionary")) || []
-    entries.splice(index, 1);
-    localStorage.setItem("dictionary",JSON.stringify(entries))
+window.onload = function () {
+    const token = localStorage.getItem("token");
+    const loginBtn = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
 
-    displayEntries()
+    if (token) {
+        if (loginBtn) loginBtn.style.display = "none";
+        if (logoutBtn) logoutBtn.style.display = "inline";
+    } else {
+        if (logoutBtn) logoutBtn.style.display = "none";
+    }
+};
+
+function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/"
+    document.getElementById("login-btn").style.display = "inline";
+    document.getElementById("logout-btn").style.display = "none";
 }

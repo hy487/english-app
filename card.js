@@ -1,3 +1,5 @@
+let API = "https://english-app-api-ntyi.onrender.com/"
+
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -8,13 +10,36 @@ function shuffle(array) {
 
 let currentEntries = [];
 
-function loadCards() {
-  let entries = JSON.parse(localStorage.getItem("dictionary")) || [];
+
+async function loadCards() {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const res = await fetch(`${API}/words`, {
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  });
+
+  if (res.status === 401) {
+    logout(); // token expired
+    return;
+  }
+
+  const entries = await res.json();
+
   let container = document.getElementById("card-holder");
 
-  if (entries.length === 0) return;
+  if (!entries.length) {
+    container.innerHTML = "No words yet";
+    return;
+  }
 
-  currentEntries = shuffle([...entries]); // copy + shuffle
+  currentEntries = shuffle([...entries]); // keep your logic
 
   let text = "";
 
@@ -22,9 +47,7 @@ function loadCards() {
     let options = getOptions(currentEntries, index);
 
     let optionsHTML = options.map(option => `
-      <a onclick="checkAnswer(${index}, '${option.replace(/'/g, "\\'")}', this)">
-    ${option}
-  </a>
+      <a onclick="checkAnswer(${index}, this)" data-answer="${option}">${option}</a>
     `).join("");
 
     text += `
@@ -39,19 +62,9 @@ function loadCards() {
   container.innerHTML = text;
 }
 
-function toggleMeaning(index) {
-  let meaningDiv = document.getElementById("meaning-" + index);
-
-  if (meaningDiv.style.display === "none") {
-    meaningDiv.style.display = "block";
-  } else {
-    meaningDiv.style.display = "none";
-  }
-}
-
 function getOptions(entries, correctIndex) {
   let options = [entries[correctIndex].meaning];
-  
+
   // Calculate how many choices we can actually show (max 3)
   let maxChoices = Math.min(entries.length, 3);
 
@@ -67,10 +80,10 @@ function getOptions(entries, correctIndex) {
   return shuffle(options);
 }
 
-function checkAnswer(index, selectedOption, element) {
+function checkAnswer(index, element) {
+  let selectedOption = element.dataset.answer;
   let correctAnswer = currentEntries[index].meaning;
 
-  // reset all options color first (optional but recommended)
   let allOptions = element.parentElement.querySelectorAll("a");
   allOptions.forEach(opt => opt.style.color = "");
 

@@ -1,4 +1,4 @@
-const API = "https://english-app-api-ntyi.onrender.com";
+const API = "https://english-app-api-ntyi.onrender.com"
 
 // REGISTER
 async function register() {
@@ -63,10 +63,6 @@ async function login() {
         }
 
         localStorage.setItem("token", data.token);
-
-        alert("Login successful!");
-        console.log("JWT:", data.token);
-
         window.location.href = "index.html";
 
     } catch (err) {
