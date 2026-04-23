@@ -93,7 +93,7 @@ window.onload = function () {
 
 function logout() {
     localStorage.removeItem("token");
-    window.location.href = "/"
+    window.location.href = "https://hy487.github.io/english-app"
     document.getElementById("login-btn").style.display = "inline";
     document.getElementById("logout-btn").style.display = "none";
 }
