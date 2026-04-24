@@ -27,6 +27,14 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
+@media (min-width: 1024px) {/*desktop*/
+  body{
+    background-image: url("img/momonga-bg-desk.png");
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+
 body.flashcard-body {
     background-size: contain;
 }
