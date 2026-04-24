@@ -10,7 +10,6 @@ function shuffle(array) {
 
 let currentEntries = [];
 
-
 async function loadCards() {
   const token = localStorage.getItem("token");
 

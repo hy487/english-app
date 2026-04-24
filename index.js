@@ -1,7 +1,18 @@
 let api = "https://english-app-api-ntyi.onrender.com"
 
+
+const welcomeText = document.getElementById("welcome")
+const name = localStorage.getItem("username")
+const token = localStorage.getItem("token");
+
+if (token && welcomeText) {
+    if(!name){
+        alert("Please login again when you're free")
+    }
+    welcomeText.innerHTML = "Welcome " + name;
+}
+
 async function displayEntries() {
-    const token = localStorage.getItem("token");
     if (!token) return;
 
     const res = await fetch(api + "/words", {
@@ -15,16 +26,17 @@ async function displayEntries() {
     let outputDiv = document.getElementById("dict");
 
     if (!entries.length) {
-        outputDiv.innerHTML = "No words yet";
         return;
     }
 
     let list = "";
     entries.forEach((word, index) => {
-        list += `<br>${word.word} - ${word.meaning}<button onclick="remove('${word._id}')">-</button>`;
+        list += `<div class="word-ctn"><button onclick="remove('${word._id}')">–</button>${word.word}&nbsp;${word.meaning}</div>`;
     });
 
-    outputDiv.innerHTML = list;
+    if(outputDiv){
+        outputDiv.innerHTML = list;
+    }
 }
 
 displayEntries();

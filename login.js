@@ -63,6 +63,7 @@ async function login() {
         }
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem("username", username)
         window.location.href = "index.html";
 
     } catch (err) {

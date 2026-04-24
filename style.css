@@ -1,26 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-    --bg-dark: hsl(336 0% 1%);
-    --bg: hsl(300 0% 4%);
-    --bg-light: hsl(0 0% 9%);
-    --text: hsl(300 0% 95%);
-    --text-muted: hsl(300 0% 69%);
-    --highlight: hsl(330 0% 39%);
-    --border: hsl(0 0% 28%);
-    --border-muted: hsl(300 0% 18%);
-    --primary: hsl(146 40% 62%);
-    --secondary: hsl(318 48% 73%);
-    --danger: hsl(9 26% 64%);
-    --warning: hsl(52 19% 57%);
-    --success: hsl(146 17% 59%);
-    --info: hsl(217 28% 65%);
+    --bg-dark: hsl(0 0% 90%);
+    --bg: hsl(300 0% 95%);
+    --bg-light: hsl(300 50% 100%);
+    --text: hsl(300 0% 4%);
+    --text-cus-bg: hsla(0, 0%, 0%, 0);
+    --text-muted: hsl(0 0% 28%);
+    --highlight: hsl(300 50% 100%);
+    --border: hsl(NaN 0% 50%);
+    --border-muted: hsl(340 0% 62%);
+    --primary: hsl(128, 81%, 52%);
+    --secondary: hsl(1, 48%, 54%);
+    --danger: hsl(9 21% 41%);
+    --warning: hsl(52 23% 34%);
+    --success: hsl(147 19% 36%);
+    --info: hsl(217 22% 41%);
 }
 
 body {
+    background-image: url("img/momonga-bg.jpg");
+    background-position: center;
+    background-size: cover;
     background-color: var(--bg);
     color: var(--text);
     font-family: "Open Sans", sans-serif;
+}
+
+body.flashcard-body {
+    background-size: contain;
 }
 
 .nav-bar {
@@ -43,7 +51,7 @@ body {
     text-decoration: none;
     margin-left: 30px;
     margin-right: 30px;
-    font-size: 20px;
+    font-size: 13px;
     transition: 300ms;
 }
 
@@ -60,7 +68,10 @@ body {
 }
 
 .main h1 {
+    font-family: 'Times New Roman', serif;
     font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 
 .main a {
@@ -69,8 +80,8 @@ body {
     border-color: var(--border);
     border-width: 1px;
     border-style: solid;
-    font-size: 20px;
-    background-color: var(--bg-light);
+    font-size: 13px;
+    backdrop-filter: blur(10px);
     transition: 300ms;
     border-radius: 7px;
     color: var(--text);
@@ -120,10 +131,14 @@ body {
 }
 
 #dict button {
-    background-color: var(--secondary);
+    background-color: transparent;
     border: none;
-    color: var(--bg-dark);
+    color: var(--secondary);
+    font-weight: 100;
+    font-size: 20px;
     cursor: pointer;
+    margin-right: 10px;
+    margin-top: 3px;
 }
 
 #card-holder {
@@ -134,7 +149,6 @@ body {
 }
 
 #card-holder .card {
-    background-color: var(--bg-light);
     width: 200px;
     display: flex;
     justify-content: center;
@@ -142,89 +156,115 @@ body {
     flex-direction: column;
     margin-top: 30px;
     padding-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     margin-bottom: 10px;
+    background: #ffffff;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(243, 249, 255) 100%);
 }
+    #card-holder .card .meaning {
+        display: none;
+        font-size: 25px;
+    }
 
-#card-holder .card .meaning {
-    display: none;
-    font-size: 25px;
-}
+    #card-holder .card h3 {
+        font-size: 25px;
+    }
 
-#card-holder .card h3 {
-    font-size: 25px;
-}
+    #card-holder .card a {
+        margin-left: 5px;
+        margin-right: 5px;
+        transition: 200ms;
+        cursor: pointer;
+    }
 
-#card-holder .card a {
-    margin-left: 5px;
-    margin-right: 5px;
-    transition: 200ms;
-    cursor: pointer;
-}
+    #card-holder .card a:hover {
+        color: var(--text-muted);
+        transition: 200ms;
+    }
 
-#card-holder .card a:hover {
-    color: var(--text-muted);
-    transition: 200ms;
-}
+    .full {
+        width: 100%;
+        display: grid;
+        place-items: center;
+        transform: translateX(-45px);
+        height: 85vh;
+    }
 
-.full {
-    width: 100%;
-    display: grid;
-    place-items: center;
-    transform: translateX(-30px);
-    height: 85vh;
-}
+    .login-card {
+        display: flex;
+        width: 100px;
 
-.login-card {
-    background-color: var(--bg-dark);
-    display: flex;
-    width: 100px;
+        h1 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
 
-    input {
+        input {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom-color: var(--border-muted);
+            background-color: transparent;
+            margin-bottom: 6px;
+            color: var(--text);
+            transition: 300ms;
+        }
+    }
+
+    .login-card input:focus {
+        background-color: var(--bg-light);
+        transition: 300ms;
         border-top: none;
         border-left: none;
         border-right: none;
-        border-bottom-color: var(--border-muted);
-        background-color: var(--bg-dark);
-        margin-bottom: 6px;
-        color: var(--text);
-        transition: 300ms;
+        outline: none;
     }
-}
-
-.login-card input:focus {
-    background-color: var(--bg-light);
-    transition: 300ms;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom-color: var(--border);
-    outline: none;
-}
 
 
-.login-card form {
-    background-color: var(--bg-dark);
-    padding: 5px 5px 5px 5px;
-}
-
-.login-card .btn{
-    background-color: var(--bg-light);
-    border: var(--border) 1px solid;
-    padding: 2px 2px 2px 2px; 
-    margin-top: 8px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-card p1 {
-    font-size: 10px;
-    color: var(--text-muted);
-
-    a {
-        color: var(--text);
-        cursor: pointer;
+    .login-card form {
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 0px 20px 5px 20px;
     }
-}
+
+    .login-card .btn {
+        background-color: var(--bg-light);
+        border: var(--border) 1px solid;
+        padding: 2px 2px 2px 2px;
+        margin-top: 8px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-card p1 {
+        font-size: 10px;
+        color: var(--text-muted);
+
+        a {
+            color: var(--text);
+            cursor: pointer;
+        }
+    }
+
+    .word-ctn {
+        background: #f0fdff;
+        background: linear-gradient(90deg, rgba(240, 253, 255, 1) 0%, rgba(255, 240, 254, 1) 100%);
+        margin-top: 10px;
+        width: 90%;
+        padding-left: 10px;
+        padding-bottom: 7px;
+        border-style: solid;
+        border-width: 1px;
+        font-size: 20px;
+        border-radius: 17px;
+        padding-top: 3px;
+    }
+
+    #dict {
+        width: 100%;
+        position: absolute;
+        left: 0;
+
+    }
