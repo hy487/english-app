@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dashboard | English App</title>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="burger" id="burger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="center">
+            <a style="color: black; border-bottom: var(--green) solid 2px;
+">Dashboard</a>
+            <a href="pages/mydictionary.html">MyDictionary</a>
+            <a href="pages/addwords.html">AddWords</a>
+            <a href="pages/dailystudy.html">DailyStudy</a>
+            <a href="pages/dailyreview.html">DailyReview</a>
+        </div>
+        <div class="user" id="profileBtn">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </div>
+
+    <dialog id="profileMenu" class="dropdown-menu" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <a>Logout</a>
+    </dialog>
+
+<dialog id="mobileSidebar" class="sidebar-dialog">
+    <div class="sidebar-content">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">Menu Navigations</h3>
+            <button id="closeSidebarBtn" class="sidebar-close-icon">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <hr class="form-divider" style="margin-top: 10px; margin-bottom: 20px;">
+        <div class="sidebar-links-stack">
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="pages/mydictionary.html"><i class="fa-solid fa-book"></i> MyDictionary</a>
+            <a href="pages/addwords.html"><i class="fa-solid fa-plus"></i> AddWords</a>
+            <a href="pages/dailystudy.html"><i class="fa-solid fa-graduation-cap"></i> DailyStudy</a>
+            <a href="pages/dailyreview.html"><i class="fa-solid fa-clock-rotate-left"></i> DailyReview</a>
+        </div>
+    </div>
+</dialog>
+
+    <div class="main-page">
+        <div class="text">
+            <h1>Welcome to your language journey.</h1>
+            <p1>Consistency is your superpower. Let's conquer today's goals.</p1>
+        </div>
+        <img src="img/study.gif">
+    </div>
+    <div class="ctn">
+        <div class="card-ctn">
+            <div class="card">
+                <div class="top-study">
+                    <i style="color: var(--green)" class="fa-solid fa-graduation-cap fa-xl"></i>
+                    <p>DailyStudy</p>
+                </div>
+                <div class="middle">
+                    <h1>Learn new words</h1>
+                    <p>It only tooks 5 minutes.</p>
+                </div>
+                <div class="bottom-study" onclick="redir('pages/dailystudy.html')">
+                    <i class="fa-solid fa-play fa-xl"></i><a>Start study</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="top-review">
+                    <i class="fa-solid fa-clock-rotate-left fa-xl"></i>
+                    <p>DailyReview</p>
+                </div>
+                <div class="middle">
+                    <h1>Review old words</h1>
+                    <p>Answer 10 quick quizzes.</p>
+                </div>
+                <div class="bottom-review" onclick="redir('pages/dailyreview.html')">
+                    <i class="fa-solid fa-play fa-xl"></i><a>Start study</a>
+                </div>
+            </div>
+
+            <div class="card" id="streak" style="background-color: var(--bg-blue);">
+                <div class="circle">
+                    <h1 id="streak-num">0</h1>
+                    <i class="fa-solid fa-fire fa-lg" style="color: var(--orange);"></i>
+                </div>
+                <h2>Day Streak</h2>
+                <p1>KEEP IT UP</p1>
+            </div>
+        </div>
+        <div class="dict">
+            <div class="left">
+                <i class="fa-solid fa-book fa-xl"></i>
+                <div class="up-down">
+                    <h1>Feed the Dictionary</h1>
+                    <p>Keep your momentum going by adding fresh vocabulary.</p>
+                </div>
+            </div>
+            <div class="add" onclick="redir('pages/mydictionary.html')">
+                <i class="fa-solid fa-plus fa-lg" style="color: white;"></i>
+                <a>Add New Word</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/affb4f2811.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

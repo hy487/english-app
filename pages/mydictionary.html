@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MyDictionary | English App</title>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="burger" id="burger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="center">
+            <a href="../index.html">Dashboard</a>
+            <a style="color: black; border-bottom: var(--green) solid 2px;
+">MyDictionary</a>
+            <a href="addwords.html">AddWords</a>
+            <a href="dailystudy.html">DailyStudy</a>
+            <a href="dailyreview.html">DailyReview</a>
+        </div>
+        <div class="user" id="profileBtn">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </div>
+    <dialog id="profileMenu" class="dropdown-menu" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <a>Logout</a>
+    </dialog>
+    <dialog id="mobileSidebar" class="sidebar-dialog">
+    <div class="sidebar-content">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">Menu Navigations</h3>
+            <button id="closeSidebarBtn" class="sidebar-close-icon">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <hr class="form-divider" style="margin-top: 10px; margin-bottom: 20px;">
+        <div class="sidebar-links-stack">
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="mydictionary.html"><i class="fa-solid fa-book"></i> MyDictionary</a>
+            <a href="addwords.html"><i class="fa-solid fa-plus"></i> AddWords</a>
+            <a href="dailystudy.html"><i class="fa-solid fa-graduation-cap"></i> DailyStudy</a>
+            <a href="dailyreview.html"><i class="fa-solid fa-clock-rotate-left"></i> DailyReview</a>
+        </div>
+    </div>
+</dialog>
+    <!-- navbar done -->
+
+    <div class="dictionary-container">
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-light-blue">
+                    <i class="fa-solid fa-book-open"></i> ALL WORDS
+                </div>
+                <div class="stat-number" id="count-all">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-light-green">
+                    <i class="fa-solid fa-graduation-cap"></i> NEW WORDS
+                </div>
+                <div class="stat-number" id="count-ready">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-light-orange">
+                    <i class="fa-solid fa-bullseye"></i> CURRENTLY LEARNING
+                </div>
+                <div class="stat-number" id="count-learning">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-light-purple">
+                    <i class="fa-solid fa-trophy"></i> FULLY MASTERED
+                </div>
+                <div class="stat-number" id="count-mastered">0</div>
+            </div>
+        </div>
+
+        <div class="controls-bar">
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Search words or meanings..." id="vocabSearch">
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="setFilter('all', this)">All Words</button>
+                <button class="filter-btn" onclick="setFilter('new', this)">New Words</button>
+                <button class="filter-btn" onclick="setFilter('learning', this)">Currently Learning</button>
+                <button class="filter-btn" onclick="setFilter('mastered', this)">Fully Mastered</button>
+            </div>
+        </div>
+
+        <div class="vocab-list">
+            <div class="list-header-labels">
+                <span style="width: 20%; text-align: left; padding-left: 10px;">WORD INFO</span>
+                <span style="width: 30%; text-align: left;">MEANING</span>
+                <span style="width: 15%; text-align: center;">STATUS</span>
+                <span style="width: 10%; text-align: center;">STREAK</span>
+                <span style="width: 15%; text-align: left;">LAST ACTIVITY</span>
+                <span style="width: 10%; text-align: center;">ACTIONS</span>
+            </div>
+
+            <div id="wordsContainer">
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/affb4f2811.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AddWords | English App</title>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="burger" id="burger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="center">
+            <a href="../index.html">Dashboard</a>
+            <a href="mydictionary.html">MyDictionary</a>
+            <a style="color: black; border-bottom: var(--green) solid 2px;
+">AddWords</a>
+            <a href="dailystudy.html">DailyStudy</a>
+            <a href="dailyreview.html">DailyReview</a>
+        </div>
+        <div class="user" id="profileBtn">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </div>
+    <dialog id="profileMenu" class="dropdown-menu" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <a>Logout</a>
+    </dialog>
+    <dialog id="mobileSidebar" class="sidebar-dialog">
+    <div class="sidebar-content">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">Menu Navigations</h3>
+            <button id="closeSidebarBtn" class="sidebar-close-icon">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <hr class="form-divider" style="margin-top: 10px; margin-bottom: 20px;">
+        <div class="sidebar-links-stack">
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="mydictionary.html"><i class="fa-solid fa-book"></i> MyDictionary</a>
+            <a href="addwords.html"><i class="fa-solid fa-plus"></i> AddWords</a>
+            <a href="dailystudy.html"><i class="fa-solid fa-graduation-cap"></i> DailyStudy</a>
+            <a href="dailyreview.html"><i class="fa-solid fa-clock-rotate-left"></i> DailyReview</a>
+        </div>
+    </div>
+</dialog>
+    <!-- navbar done -->
+<div class="add-word-page-container">
+    
+    <div class="form-card">
+        <div class="form-card-header">
+            <div class="header-icon-box">
+                <i class="fa-solid fa-square-poll-horizontal"></i>
+            </div>
+            <h2 class="form-card-title">Create New Word</h2>
+        </div>
+        
+        <hr class="form-divider">
+        
+        <div class="form-inputs-row">
+            <div class="input-field-group">
+                <label class="field-label">WORD</label>
+                <input type="text" class="form-input-box" placeholder="Enter a new word (e.g., Hello)" id="newWordInput">
+            </div>
+            
+            <div class="input-field-group">
+                <label class="field-label">MEANING</label>
+                <input type="text" class="form-input-box" placeholder="Meaning (e.g., 你好)" id="newMeaningInput">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-button-actions-row">
+        
+        <button type="button" class="form-submit-btn disabled" id="submitWordBtn" disabled>
+            Add<i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+</div>
+    
+    <script src="https://kit.fontawesome.com/affb4f2811.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="addword.js"></script>
+</body>
