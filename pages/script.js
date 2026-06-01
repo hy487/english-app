@@ -156,7 +156,7 @@ function renderDictionaryRows() {
             
             <div class="col-streak">
               <div class="streak-indicator ${currentStreak > 0 ? 'active' : ''}">
-                <i class="fa-solid ${currentStreak > 0 ? 'fa-fire orange-fire' : 'fa-droplet gray-fire'}"></i>
+                <i class="fa-solid ${currentStreak > 0 ? 'fa-fire orange-fire' : 'fa-fire gray-fire'}"></i>
                 <span>${currentStreak}</span>
               </div>
             </div>
