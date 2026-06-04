@@ -35,7 +35,6 @@ function redir(link){
 }
 
 async function loadUserStreak() {
-
     if (!token) return;
 
     try {
@@ -48,10 +47,23 @@ async function loadUserStreak() {
 
         if (response.ok) {
             const userData = await response.json();
-            
-            const currentStreak = userData.streak || 0;
-            
-            console.log("Current User Streak from DB:", currentStreak);
+            let currentStreak = userData.streak || 0;
+            const lastActiveDate = userData.lastActiveDate;
+            if (lastActiveDate) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const [year, month, day] = lastActiveDate.split('-').map(Number);
+                const lastActiveMidnight = new Date(year, month - 1, day);
+                lastActiveMidnight.setHours(0, 0, 0, 0);
+
+                const msDifference = today.getTime() - lastActiveMidnight.getTime();
+                const daysPassed = Math.round(msDifference / (1000 * 60 * 60 * 24));
+
+                if (daysPassed >= 2) {
+                    currentStreak = 0;
+                }
+            }
 
             const streakElement = document.getElementById("streak-num");
             if (streakElement) {

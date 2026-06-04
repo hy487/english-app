@@ -21,17 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (profileBtn && profileMenu) {
-        profileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (profileMenu.open) profileMenu.close(); else profileMenu.show();
-        });
-        window.addEventListener('click', () => { if (profileMenu.open) profileMenu.close(); });
-    }
+    profileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (profileMenu.open) profileMenu.close(); else profileMenu.show();
+    });
+
+    // Stop propagation inside the menu clicks to keep logout button working natively
+    profileMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    window.addEventListener('click', () => { 
+        if (profileMenu.open) profileMenu.close(); 
+    });
+}
 
     function getTodayString() {
-        const d = new Date();
-        return `study-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-    }
+    const d = new Date();
+    return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+}
 
     async function initializeStudyEngine() {
         const todayStr = getTodayString();

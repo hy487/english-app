@@ -22,12 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
             e.stopPropagation();
             if (profileMenu.open) profileMenu.close(); else profileMenu.show();
         });
-        window.addEventListener('click', () => { if (profileMenu.open) profileMenu.close(); });
+
+        // Stop propagation inside the menu clicks to keep logout button working natively
+        profileMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        window.addEventListener('click', () => {
+            if (profileMenu.open) profileMenu.close();
+        });
     }
 
     function getTodayString() {
         const d = new Date();
-        return `review-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+        return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
     }
 
     async function initializeReviewEngine() {
@@ -229,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 "Authorization": `Bearer ${token}`
                             },
                             body: JSON.stringify({
-                                type: "review", 
+                                type: "review",
                                 dateString: `review-${targetDateStr}`,
                                 historySession: quizQuestions
                             })
@@ -311,7 +319,7 @@ if (profileBtn && profileMenu) {
         e.stopPropagation();
     });
 
-    window.addEventListener('click', () => { 
-        if (profileMenu.open) profileMenu.close(); 
+    window.addEventListener('click', () => {
+        if (profileMenu.open) profileMenu.close();
     });
 }
